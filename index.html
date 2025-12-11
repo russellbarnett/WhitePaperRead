@@ -182,10 +182,11 @@
     .quadrant {
       position: relative;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), var(--panel));
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid var(--rule);
       height: 280px;
       overflow: hidden;
+      padding: 32px 32px 28px;
     }
 
     .quadrant::before,
@@ -196,19 +197,17 @@
     }
 
     .quadrant::before {
-      /* vertical axis */
       width: 1px;
-      height: 100%;
+      height: calc(100% - 40px);
       left: 50%;
-      top: 0;
+      top: 20px;
     }
 
     .quadrant::after {
-      /* horizontal axis */
       height: 1px;
-      width: 100%;
+      width: calc(100% - 40px);
       top: 50%;
-      left: 0;
+      left: 20px;
     }
 
     .quad-axis-label {
@@ -221,54 +220,56 @@
     }
 
     .quad-axis-label.bottom-left {
-      left: 16px;
+      left: 24px;
       bottom: 12px;
     }
 
     .quad-axis-label.bottom-right {
-      right: 16px;
+      right: 24px;
       bottom: 12px;
     }
 
-    .quad-item {
-      position: absolute;
-      font-size: 13px;
-      font-weight: 500;
-      background: rgba(5, 6, 8, 0.9);
-      padding: 4px 8px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .quad-item.alt {
-      background: transparent;
-      border-radius: 0;
-      padding: 0;
-    }
-
-    /* approximate placements */
-    .quad-creative-force { left: 16%; top: 26%; }
-    .quad-rocketium { left: 18%; top: 58%; }
-    .quad-ops-stack { left: 8%; top: 78%; font-size: 12px; }
-
-    .quad-writer { right: 22%; top: 22%; }
-    .quad-genstudio { right: 16%; top: 34%; }
-    .quad-typeface { right: 28%; top: 38%; }
-
-    .quad-jasper { right: 26%; top: 64%; }
-    .quad-firefly { right: 18%; top: 70%; }
-    .quad-omnek y { right: 25%; top: 80%; }
-
     .quad-brandstudios {
+      position: absolute;
+      top: 12px;
       left: 50%;
-      top: 6%;
       transform: translateX(-50%);
       font-family: var(--mono);
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      background: rgba(5, 6, 8, 0.94);
-      padding: 6px 14px;
+      background: rgba(5, 6, 8, 0.95);
+      padding: 6px 16px;
+      border-radius: 999px;
+    }
+
+    .quad-group {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quad-group-tl { top: 40px; left: 24px; }
+    .quad-group-tr { top: 40px; right: 24px; align-items: flex-end; }
+    .quad-group-bl { bottom: 32px; left: 24px; }
+    .quad-group-br { bottom: 32px; right: 24px; align-items: flex-end; }
+
+    .quad-pill {
+      font-size: 13px;
+      font-weight: 500;
+      background: rgba(5, 6, 8, 0.9);
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .quad-pill.soft {
+      background: transparent;
+      color: var(--muted);
+      padding: 0;
+      border-radius: 0;
+      font-size: 12px;
     }
 
     @media (max-width: 640px) {
@@ -286,6 +287,17 @@
 
       .quadrant {
         height: 260px;
+        padding: 28px 20px 24px;
+      }
+
+      .quad-group-tl,
+      .quad-group-tr {
+        top: 38px;
+      }
+
+      .quad-group-bl,
+      .quad-group-br {
+        bottom: 30px;
       }
     }
   </style>
@@ -359,7 +371,7 @@
         <p>The market is full of tools built to create more, not create better.</p>
       </section>
 
-      <!-- 03 new: true tools / real ops layer -->
+      <!-- 03 -->
       <section id="section-03">
         <div class="section-label">03 · The Tools Everyone Forgets</div>
         <h2>True Tools: The Operational Layer Everyone Depends On</h2>
@@ -381,19 +393,29 @@
         <div class="quadrant-wrapper">
           <div class="quad-tagline">Automation that learns. Intelligence that remembers.</div>
           <div class="quadrant">
-            <div class="quad-item quad-brandstudios">BrandStudios.AI</div>
+            <div class="quad-brandstudios">BrandStudios.AI</div>
 
-            <div class="quad-item quad-creative-force">Creative&nbsp;Force</div>
-            <div class="quad-item quad-rocketium">Rocketium</div>
-            <div class="quad-item quad-ops-stack alt">Ops stack: Asana / Monday / DAMs</div>
+            <div class="quad-group quad-group-tl">
+              <div class="quad-pill">Creative Force</div>
+              <div class="quad-pill">Rocketium</div>
+              <div class="quad-pill soft">Ops stack: Asana / Monday / DAMs</div>
+            </div>
 
-            <div class="quad-item quad-writer">Writer</div>
-            <div class="quad-item quad-genstudio">Adobe GenStudio</div>
-            <div class="quad-item quad-typeface">Typeface</div>
+            <div class="quad-group quad-group-tr">
+              <div class="quad-pill">Writer</div>
+              <div class="quad-pill">Adobe GenStudio</div>
+              <div class="quad-pill">Typeface</div>
+            </div>
 
-            <div class="quad-item quad-jasper">Jasper</div>
-            <div class="quad-item quad-firefly">Adobe Firefly</div>
-            <div class="quad-item quad-omnek y">Omneky</div>
+            <div class="quad-group quad-group-bl">
+              <!-- left open on purpose to show gap in high automation + low capability -->
+            </div>
+
+            <div class="quad-group quad-group-br">
+              <div class="quad-pill">Jasper</div>
+              <div class="quad-pill">Adobe Firefly</div>
+              <div class="quad-pill">Omneky</div>
+            </div>
 
             <div class="quad-axis-label bottom-left">Automation</div>
             <div class="quad-axis-label bottom-right">Capability</div>
