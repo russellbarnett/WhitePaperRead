@@ -7,10 +7,10 @@
   <style>
     :root {
       --bg: #050608;
-      --bg-soft: #0b0d11;
       --fg: #f5f5f7;
       --muted: #9c9fab;
       --rule: #262932;
+      --panel: #0b0d11;
       --mono: "DM Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, sans-serif;
     }
@@ -164,6 +164,113 @@
       margin-top: 26px;
     }
 
+    /* quadrant map */
+    .quadrant-wrapper {
+      margin: 18px 0 6px;
+    }
+
+    .quad-tagline {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: right;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .quadrant {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), var(--panel));
+      border-radius: 10px;
+      border: 1px solid var(--rule);
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .quadrant::before,
+    .quadrant::after {
+      content: "";
+      position: absolute;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .quadrant::before {
+      /* vertical axis */
+      width: 1px;
+      height: 100%;
+      left: 50%;
+      top: 0;
+    }
+
+    .quadrant::after {
+      /* horizontal axis */
+      height: 1px;
+      width: 100%;
+      top: 50%;
+      left: 0;
+    }
+
+    .quad-axis-label {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .quad-axis-label.bottom-left {
+      left: 16px;
+      bottom: 12px;
+    }
+
+    .quad-axis-label.bottom-right {
+      right: 16px;
+      bottom: 12px;
+    }
+
+    .quad-item {
+      position: absolute;
+      font-size: 13px;
+      font-weight: 500;
+      background: rgba(5, 6, 8, 0.9);
+      padding: 4px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .quad-item.alt {
+      background: transparent;
+      border-radius: 0;
+      padding: 0;
+    }
+
+    /* approximate placements */
+    .quad-creative-force { left: 16%; top: 26%; }
+    .quad-rocketium { left: 18%; top: 58%; }
+    .quad-ops-stack { left: 8%; top: 78%; font-size: 12px; }
+
+    .quad-writer { right: 22%; top: 22%; }
+    .quad-genstudio { right: 16%; top: 34%; }
+    .quad-typeface { right: 28%; top: 38%; }
+
+    .quad-jasper { right: 26%; top: 64%; }
+    .quad-firefly { right: 18%; top: 70%; }
+    .quad-omnek y { right: 25%; top: 80%; }
+
+    .quad-brandstudios {
+      left: 50%;
+      top: 6%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      background: rgba(5, 6, 8, 0.94);
+      padding: 6px 14px;
+    }
+
     @media (max-width: 640px) {
       .page {
         padding: 32px 16px 48px;
@@ -176,6 +283,10 @@
       section {
         padding: 22px 0 24px;
       }
+
+      .quadrant {
+        height: 260px;
+      }
     }
   </style>
 </head>
@@ -186,13 +297,13 @@
       <div class="eyebrow">White Paper</div>
       <h1>Enterprise Creative Intelligence for Modern Brands and Scaled Agencies</h1>
       <p class="subtitle">
-        A perspective on why speed without intelligence is breaking creative systems,
-        and how a learning architecture restores brand fidelity at scale.
+        Why speed without intelligence is breaking creative systems, and how a learning architecture restores brand fidelity at scale.
       </p>
       <hr class="rule" />
     </header>
 
     <main>
+      <!-- 01 -->
       <section id="section-01">
         <div class="section-label">01 · The Creative System Under Strain</div>
         <h2>The Creative System Under Strain</h2>
@@ -213,6 +324,7 @@
         <p>Creativity scales only when intelligence scales with it.</p>
       </section>
 
+      <!-- 02 -->
       <section id="section-02">
         <div class="section-label">02 · The Industry’s Two Insufficient Responses</div>
         <h2>The Industry’s Two Insufficient Responses</h2>
@@ -220,7 +332,7 @@
         <p>Two dominant responses have emerged, and both fall short.</p>
 
         <p><strong>Holding Companies Built Internal Models</strong><br />
-        They look impressive on stage: AI-powered capabilities, proprietary systems, “differentiation.” Operationally, they fail in predictable ways.</p>
+        They look impressive on stage: AI powered capabilities, proprietary systems, “differentiation.” Operationally, they fail in predictable ways.</p>
 
         <ul>
           <li>They cannot learn across clients due to strict data walls</li>
@@ -232,7 +344,7 @@
         <p>Internal models add complexity to organizations already struggling with complexity. They generate assets. They do not generate intelligence.</p>
 
         <p><strong>Vendors Flood the Market with Production Tools</strong><br />
-        Tools like Stability’s “brand style” systems are fast and polished. They can match a brand’s look and generate endless variations.</p>
+        Tools like Stability’s brand style systems are fast and polished. They can match a brand’s look and generate endless variations.</p>
 
         <p>But they stop at the surface.</p>
 
@@ -247,15 +359,62 @@
         <p>The market is full of tools built to create more, not create better.</p>
       </section>
 
+      <!-- 03 new: true tools / real ops layer -->
       <section id="section-03">
-        <div class="section-label">03 · The Missing Layer</div>
+        <div class="section-label">03 · The Tools Everyone Forgets</div>
+        <h2>True Tools: The Operational Layer Everyone Depends On</h2>
+
+        <p>Beneath the AI talk tracks, real creative work still runs on a stack of operational tools. They are not glamorous, but they are everywhere: production workflow systems, task managers, DAMs, brand portals, collaboration suites. This is the invisible backbone of day to day creative execution.</p>
+
+        <p>They do important jobs, but they share the same limits.</p>
+
+        <ul>
+          <li>They automate coordination, not intelligence</li>
+          <li>They store assets, not identity</li>
+          <li>They speed up steps, but not outcomes</li>
+          <li>They fragment as much as they organize</li>
+          <li>They cannot create brand fidelity at scale</li>
+        </ul>
+
+        <p>These are the tools that keep work moving, but they do not make the system smarter. Identity lives in guidelines and in people’s heads. The tools simply route tasks around it.</p>
+
+        <div class="quadrant-wrapper">
+          <div class="quad-tagline">Automation that learns. Intelligence that remembers.</div>
+          <div class="quadrant">
+            <div class="quad-item quad-brandstudios">BrandStudios.AI</div>
+
+            <div class="quad-item quad-creative-force">Creative&nbsp;Force</div>
+            <div class="quad-item quad-rocketium">Rocketium</div>
+            <div class="quad-item quad-ops-stack alt">Ops stack: Asana / Monday / DAMs</div>
+
+            <div class="quad-item quad-writer">Writer</div>
+            <div class="quad-item quad-genstudio">Adobe GenStudio</div>
+            <div class="quad-item quad-typeface">Typeface</div>
+
+            <div class="quad-item quad-jasper">Jasper</div>
+            <div class="quad-item quad-firefly">Adobe Firefly</div>
+            <div class="quad-item quad-omnek y">Omneky</div>
+
+            <div class="quad-axis-label bottom-left">Automation</div>
+            <div class="quad-axis-label bottom-right">Capability</div>
+          </div>
+        </div>
+
+        <p class="callout">
+          Tools automate tasks. HoldCo platforms automate optics. Model vendors automate output. None of them carry the intelligence of the brand itself.
+        </p>
+      </section>
+
+      <!-- 04 -->
+      <section id="section-04">
+        <div class="section-label">04 · The Missing Layer</div>
         <h2>The Missing Layer: Enterprise Creative Intelligence</h2>
 
-        <p>The industry doesn’t need another tool. It needs a system.</p>
+        <p>The industry does not need another tool. It needs a system.</p>
 
         <p>A system that holds the brand’s identity together as it scales. A system that accelerates creation without eroding fidelity. A system where human judgment remains central, supported not replaced by intelligence. A system that learns from every campaign, sharpens every expression, and reduces drift over time.</p>
 
-        <p>Enterprise creative operations require three non-negotiable capabilities:</p>
+        <p>Enterprise creative operations require three non negotiable capabilities:</p>
 
         <ul>
           <li>A living understanding of brand identity</li>
@@ -267,8 +426,9 @@
         <p>This is what the industry has been missing.</p>
       </section>
 
-      <section id="section-04">
-        <div class="section-label">04 · BrandStudios.AI</div>
+      <!-- 05 -->
+      <section id="section-05">
+        <div class="section-label">05 · BrandStudios.AI</div>
         <h2>Introducing BrandStudios.AI: The System That Learns</h2>
 
         <p>BrandStudios.AI is built for the real world agencies and global brands live in: multiple teams, multiple markets, multiple demands. It creates coherence where modern creative ecosystems fractured.</p>
@@ -278,7 +438,7 @@
         <p>Three modules form a continuous loop.</p>
 
         <p><strong>1. Brand Memory</strong><br />
-        A living intelligence layer capturing voice, tone, values, emotional cues, visual patterns, and behavioral signatures. Not static guidelines. Not rigid rules. A system-level understanding that strengthens with every execution.</p>
+        A living intelligence layer capturing voice, tone, values, emotional cues, visual patterns, and behavioral signatures. Not static guidelines. Not rigid rules. A system level understanding that strengthens with every execution.</p>
 
         <p>Brand Memory evolves through real use, sharpening identity instead of diluting it. It is the foundation of brand fidelity at scale.</p>
 
@@ -287,7 +447,7 @@
 
         <ul>
           <li>adaptive creative generation guided by Brand Memory</li>
-          <li>human-in-the-loop refinement and approvals</li>
+          <li>human in the loop refinement and approvals</li>
           <li>reduction of repetitive cycles</li>
           <li>acceleration without flattening nuance</li>
           <li>workflow clarity and creative alignment</li>
@@ -307,14 +467,15 @@
         </ul>
 
         <p>This is where creative organizations stop guessing.</p>
-        <p>And this is where the holy grail lives: the continuous human-in-the-loop cycle that compounds intelligence.</p>
+        <p>And this is where the holy grail lives: the continuous human in the loop cycle that compounds intelligence.</p>
       </section>
 
-      <section id="section-05">
-        <div class="section-label">05 · Human + Machine</div>
+      <!-- 06 -->
+      <section id="section-06">
+        <div class="section-label">06 · Human + Machine</div>
         <h2>The Human + Machine Continuous Cycle</h2>
 
-        <p>Great brands are not built by algorithms. They’re built by people who understand nuance, emotion, culture, and context.</p>
+        <p>Great brands are not built by algorithms. They are built by people who understand nuance, emotion, culture, and context.</p>
 
         <p>BrandStudios.AI amplifies them.</p>
 
@@ -327,8 +488,9 @@
         <p>This is the compound advantage the industry has been chasing. This is the operating system modern creative organizations have been missing.</p>
       </section>
 
-      <section id="section-06">
-        <div class="section-label">06 · Scaled Agencies</div>
+      <!-- 07 -->
+      <section id="section-07">
+        <div class="section-label">07 · Scaled Agencies</div>
         <h2>Why Scaled Agencies Win With BrandStudios.AI</h2>
 
         <p>Agencies sit in an impossible tension: accelerating volume, shrinking budgets, rising expectations.</p>
@@ -347,8 +509,9 @@
         <p>Teams gain clarity. Clients gain trust. The agency gains advantage.</p>
       </section>
 
-      <section id="section-07">
-        <div class="section-label">07 · Enterprise Brands</div>
+      <!-- 08 -->
+      <section id="section-08">
+        <div class="section-label">08 · Enterprise Brands</div>
         <h2>Why Enterprise Brands Win With BrandStudios.AI</h2>
 
         <p>Global brands cannot afford drift. Every market, every team, every partner introduces risk.</p>
@@ -367,11 +530,12 @@
         <p>This is enterprise infrastructure. A brand’s intelligence layer becomes its moat.</p>
       </section>
 
-      <section id="section-08">
-        <div class="section-label">08 · Above The Noise</div>
+      <!-- 09 -->
+      <section id="section-09">
+        <div class="section-label">09 · Above The Noise</div>
         <h2>Rising Above the Noise</h2>
 
-        <p>The market is about to be flooded with Stability-style tools. Model-centric solutions promising speed, consistency, automation.</p>
+        <p>The market is about to be flooded with Stability style tools. Model centric solutions promising speed, consistency, automation.</p>
 
         <p>They will all sound the same. They will all solve the same narrow problem.</p>
 
@@ -382,14 +546,15 @@
           <li>we unify identity, creation, and performance</li>
           <li>we get smarter with scale, not weaker</li>
           <li>we amplify humans, not replace them</li>
-          <li>we build compounding intelligence, not one-off outputs</li>
+          <li>we build compounding intelligence, not one off outputs</li>
         </ul>
 
         <p>They automate production. We automate understanding.</p>
       </section>
 
-      <section id="section-09">
-        <div class="section-label">09 · The Strategic Future</div>
+      <!-- 10 -->
+      <section id="section-10">
+        <div class="section-label">10 · The Strategic Future</div>
         <h2>The Strategic Future</h2>
 
         <p>The next era of brand and agency performance will hinge on one question:</p>
